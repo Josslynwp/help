@@ -14,7 +14,7 @@ def instructions(room):
     print("You can move to another room using these directions:")
     for direct in direction:
         print("{}".format(direct))
-    print("To exit game enter 'q'. ")
+    print("To exit game enter 'exit'. ")
 
 
 def in_room(direct):
@@ -28,13 +28,13 @@ def in_room(direct):
 
 
 # primary loop
-stop = "Go"
 current_room = "Great Hall"
-while stop != "q":
+while current_room != "exit":
     # instructions(current_room)
     user_input = input(instructions(current_room))
-    if user_input == 'q':
-        break
+    if user_input == "exit":
+        #both current_room and user_input will be set to "exit"
+        current_room = user_input
     elif user_input not in direction:
         print("{} is not valid input.".format(user_input))
         continue
