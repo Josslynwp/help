@@ -1,0 +1,46 @@
+# Josslyn Wilson-Parker
+# A dictionary for the simplified dragon text game
+# The dictionary links a room to other rooms.
+rooms = {
+    'Great Hall': {'South': 'Bedroom'},
+    'Bedroom': {'North': 'Great Hall', 'East': 'Cellar'},
+    'Cellar': {'West': 'Bedroom'}
+}
+direction = ["North", "South", "East", "West"]
+
+
+def instructions(room):
+    print("You are currently in the {}".format(room))
+    print("You can move to another room using these directions:")
+    for direct in direction:
+        print("{}".format(direct))
+    print("To exit game enter 'q'. ")
+
+
+def in_room(direct):
+    the_location = rooms[room]
+    if direct not in the_location:
+        print("Invalid input for {}".format(room))
+        return room
+    # change rooms
+    print("You are moving to the {}".format(the_location[direct]))
+    return the_location[direct]
+
+
+# primary loop
+stop = "Go"
+current_room = "Great Hall"
+while stop != "q":
+    # instructions(current_room)
+    user_input = input(instructions(current_room))
+    if user_input == 'q':
+        break
+    elif user_input not in direction:
+        print("{} is not valid input.".format(user_input))
+        continue
+    if current_room == "Great Hall":
+        current_room = in_room("Great Hall", user_input)
+    elif current_room == "Bedroom":
+        current_room - in_room("Bedroom", user_input)
+    elif current_room == "Cellar":
+        current_room = in_room("Cellar", user_input)
